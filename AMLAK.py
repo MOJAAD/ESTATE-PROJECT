@@ -51,12 +51,12 @@ class estate:
         self.description = description
         self.type_presentation = type_presentation
 
-    def __del__(self,area,address,price,description,type_presentation):
-        self.area=0
-        self.address=''
-        self.price=0
-        self.description=''
-        self.type_presentation=''
+    # def __del__(self,area,address,price,description,type_presentation):
+    #     self.area=0
+    #     self.address=''
+    #     self.price=0
+    #     self.description=''
+    #     self.type_presentation=''
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class farming(estate):
     water_period=0
@@ -64,9 +64,9 @@ class farming(estate):
         estate.__init__(self,area,address,price,description,type_presentation)
         self.water_period = water_period
 
-    def __del__(self,area,address,price,description,type_presentation,water_period):
-        estate.__del__(self,area,adderss,price,description,type_presentation)
-        self.water_period=0
+    # def __del__(self,area,address,price,description,type_presentation,water_period):
+    #     estate.__del__(self,area,adderss,price,description,type_presentation)
+    #     self.water_period=0
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class garden(farming):
     def __init__(self,area,address,price,description,type_presentation,water_period,type_garden='',wall=False,bower=False):
@@ -75,25 +75,25 @@ class garden(farming):
         self.wall = wall
         self.bower = bower
 
-    def showclass():
+    def showclass(self):
         print("AREA : {}   ADDRESS : {}   PRICE : {}".format(self.area,self.address,self.price))
         print("TYPE OF GARDEN : {}   WATER PERIOD : {}   WALL : {}   BOWER : {}".format(self.type_garden,self.water_period,self.wall,self.bower))
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
         print("___________________________________________________________________________________________")
 
-    def __del__(area,address,price,description,type_presentation,water_period,type_garden,wall,bower):
-        farming.__del__(area,adderss,price,description,type_presentation,water_period)
-        self.type_garden = ''
-        self.wall = False
-        self.bower = False
+    # def __del__(area,address,price,description,type_presentation,water_period,type_garden,wall,bower):
+    #     farming.__del__(area,adderss,price,description,type_presentation,water_period)
+    #     self.type_garden = ''
+    #     self.wall = False
+    #     self.bower = False
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class field(farming):
     def __init__(self,area,address,price,description,type_presentation,water_period,bower=False):
         farming.__init__(self,area,address,price,description,type_presentation,water_period)
         self.bower = bower
 
-    def showclass():
+    def showclass(self):
         print("AREA : {}   ADDRESS : {}   PRICE : {}".format(self.area,self.address,self.price))
         print("WATER PERIOD : {}   BOWER : {}".format(self.water_period,self.bower))
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
@@ -101,9 +101,9 @@ class field(farming):
         print("___________________________________________________________________________________________")
 
     
-    def __del__(area,address,price,description,type_presentation,water_period,bower):
-        farming.__del__(self,area,adderss,price,description,type_presentation,water_period)
-        self.bower = bower
+    # def __del__(self,area,address,price,description,type_presentation,water_period,bower):
+    #     farming.__del__(self,area,adderss,price,description,type_presentation,water_period)
+    #     self.bower = bower
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class building(estate):
     construction_year = 0
@@ -111,9 +111,9 @@ class building(estate):
         estate.__init__(self,area,address,price,description,type_presentation)
         self.construction_year = construction_year
 
-    def __del__(self,area,address,price,description,type_presentation,construction_year):
-        estate.__del__(self,area,address,price,description,type_presentation)
-        self.construction_year = 0
+    # def __del__(self,area,address,price,description,type_presentation,construction_year):
+    #     estate.__del__(self,area,address,price,description,type_presentation)
+    #     self.construction_year = 0
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class residential(building):
     def __init__(self,area,address,price,description,type_presentation,construction_year,residential_type,number_of_rooms,parking,des1,des2,des3):
@@ -125,26 +125,26 @@ class residential(building):
         self.des2 = des2 #unit or porch
         self.des3 = des3 #elevator or furnished
 
-    def showclass():
+    def showclass(self):
         print("AREA : {}   ADDRESS : {}   PRICE : {}".format(self.area,self.address,self.price))
         print("CONSTRUCTION YEAR : {}   RESIDENTIAL TYPE : {}   NUMBER OF ROOMS : {}".format(self.construction_year,self.residential_type,self.number_of_rooms))
-        if residential_type=='APARTMENT':
+        if self.residential_type=='APARTMENT':
             print("FLOOR : {}   UNIT : {}   ELEVATOR : {}".format(self.des1,self.des2,self.des3))
-        elif residential_type=='HOUSE' or residential_type=='VILLA':
+        elif self.residential_type=='HOUSE' or self.residential_type=='VILLA':
             print("YARD : {}   PORCH : {}   FURNISHED : {}".format(self.des1,self.des2,self.des3))    
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
         print("___________________________________________________________________________________________")
 
 
-    def __del__(self,area,address,price,description,type_presentation,construction_year,residential_type,number_of_rooms,parking,des1,des2,des3):
-        building.__del__(self,area,address,price,description,type_presentation,construction_year)
-        self.number_of_rooms = 0
-        self.parking = False
-        self.residential_type = ''
-        self.des1 = 0
-        self.des2 = 0
-        self.des3 = False
+    # def __del__(self,area,address,price,description,type_presentation,construction_year,residential_type,number_of_rooms,parking,des1,des2,des3):
+    #     building.__del__(self,area,address,price,description,type_presentation,construction_year)
+    #     self.number_of_rooms = 0
+    #     self.parking = False
+    #     self.residential_type = ''
+    #     self.des1 = 0
+    #     self.des2 = 0
+    #     self.des3 = False
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 class commercial(building):
     def __init__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1=0,des2=0,des3=0,des4=0):
@@ -155,7 +155,7 @@ class commercial(building):
         self.des3 = des3 #                      or 
         self.des4 = des4 #                      or
 
-    def showclass():
+    def showclass(self):
         print("AREA : {}   ADDRESS : {}   PRICE : {}".format(self.area,self.address,self.price))
         print("CONSTRUCTION YEAR : {}   COMMERCIAL TYPE : {}   ".format(self.construction_year,self.commercial_type))
         if commercial_type=='INDUSTRIAL':
@@ -169,28 +169,13 @@ class commercial(building):
         print("___________________________________________________________________________________________")
 
     
-    def __del__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1,des2,des3,des4):
-        building.__del__(self,area,address,price,description,type_presentation,construction_year)
-        self.commercial_type=''
-        self.des1 = 0
-        self.des2 = 0 
-        self.des3 = 0 
-        self.des4 = 0 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# class official(building):
-#     def __init__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1=0,des2=0,des3=0,des4=0):
-#         building.__init__(self,area,address,price,description,type_presentation,construction_year)
-#         self.des1 = des1 
-#         self.des2 = des2 
-#         self.des3 = des3 
-#         self.des4 = des4 
-
-#     def __del__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1,des2,des3,des4):
-#         building.__del__(self,area,address,price,description,type_presentation,construction_year)
-#         self.des1 = 0 
-#         self.des2 = 0 
-#         self.des3 = 0 
-#         self.des4 = 0 
+    # def __del__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1,des2,des3,des4):
+    #     building.__del__(self,area,address,price,description,type_presentation,construction_year)
+    #     self.commercial_type=''
+    #     self.des1 = 0
+    #     self.des2 = 0 
+    #     self.des3 = 0 
+    #     self.des4 = 0 
 ############################################### WELCOME ANIMATION ###################################################
 def welcome_animation():
     cls()
@@ -470,7 +455,7 @@ def ADD():
 
 ################################################# SEARCH ESTATE #####################################################
 def SEARCH():
-    flag0='0'
+    #flag0='0'
     while True:
         cls()
         print("\t\t\t ______________________________________")
@@ -479,30 +464,55 @@ def SEARCH():
         print("\t\t\t|   1) BY TYPE OF ESTATE               |")
         print("\t\t\t|   2) BY ADDRESS                      |")
         print("\t\t\t|   3) BY RANGE OF PRICE               |")
-        print("\t\t\t|   4) ADVANCE                         |")
-        selector=input("\t\t\t|   5) BACK                            |")
-        if selector=='4':
-            flag0='1'
-        print("\t\t\t|______________________________________|")
-        if selector=='1' or flag0=='1':    
+        #print("\t\t\t|   4) ADVANCE                         |")
+        print("\t\t\t|   5) BACK                            |")
+        selector=input("\t\t\t|______________________________________|")
+        #if selector=='4':
+        #    flag0='1'
+        if selector=='1':    
             print("\t\t\t|   -->) CHOOSE TYPE OF ESTATE         |")
             print("\t\t\t|   1) FARMING                         |")
             print("\t\t\t|   2) BUILDING                        |")
-            inselector=input("\t\t\t|   3) ADVANCE                         |")
-            print("\t\t\t|______________________________________|")
+            print("\t\t\t|   3) ADVANCE                         |")
+            inselector=input("\t\t\t|______________________________________|")
             if inselector=='1':
+                cls()
+                print("___________________________________________________________________________________________")
                 newfile=open(amlak_samieian,'rb')
-                for line in newfile:
-                    #farming1=pooryasays.load(newfile)
-                    farming1=newfile.readline()
-                    farming1=pooryasays.load(farming1)
-                    if water_period in farming1 :
-                    #if temp==True :
-                        farming1.showclass() 
-                print("\t\t\t\tpress any key to continue...")
+                while True :
+                    try:
+                        farming1=pooryasays.load(newfile)
+                        if type(farming1.water_period)==int :
+                            farming1.showclass()
+                    except AttributeError :
+                        pass
+                    except EOFError :
+                        print("\n\n\t\t\t\tThere is not any more!")
+                        break
+                    except NameError:
+                        print("\n\n\t\t\t\tThere is !")
+                        break 
+                input("\t\t\t\tpress any key to continue...")
                 newfile.close()
             elif inselector=='2':
-                temp=0
+                cls()
+                print("___________________________________________________________________________________________")
+                newfile=open(amlak_samieian,'rb')
+                while True :
+                    try:
+                        building1=pooryasays.load(newfile)
+                        if type(building1.construction_year)==int :
+                            building1.showclass()
+                    except AttributeError :
+                        pass
+                    except EOFError :
+                        print("\n\n\t\t\t\tThere is not any more!")
+                        break
+                    except NameError:
+                        print("\n\n\t\t\t\tThere is !")
+                        break
+                input("\t\t\t\tpress any key to continue...")
+                newfile.close()
             elif inselector=='3':
                 print("\t\t\t|   -->) CHOOSE TYPE OF ESTATE         |")
                 print("\t\t\t|   1) GARDEN                          |")
@@ -516,39 +526,203 @@ def SEARCH():
                 ininselector=input("\t\t\t|   Other) BACK                        |")
                 print("\t\t\t|______________________________________|")
                 if ininselector=='1':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            garden1=pooryasays.load(newfile)
+                            if type(garden1.type_garden)==str :
+                                garden1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='2':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            field1=pooryasays.load(newfile)
+                            if type(field1.bower)==bool :
+                                field1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='3':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            apartment1=pooryasays.load(newfile)
+                            if apartment1.residential_type=='APARTMENT' :
+                                apartment1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='4':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            house1=pooryasays.load(newfile)
+                            if house1.residential_type=='HOUSE' :
+                                house1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='5':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            villa1=pooryasays.load(newfile)
+                            if villa1.residential_type=='VILLA' :
+                                villa1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='6':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            industrial1=pooryasays.load(newfile)
+                            if industrial1.commercial_type=='INDUSTRIAL' :
+                                industrial1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='7':
-                    temp=0
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            office1=pooryasays.load(newfile)
+                            if office1.commercial_type=='OFFICE' :
+                                office1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 elif ininselector=='8':
-                    temp=0
-        if selector=='2' or flag0=='1':    
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    newfile=open(amlak_samieian,'rb')
+                    while True :
+                        try:
+                            shop1=pooryasays.load(newfile)
+                            if shop1.commercial_type=='SHOP' :
+                                shop1.showclass()
+                        except AttributeError :
+                            pass
+                        except EOFError :
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break
+                        except NameError:
+                            print("\n\n\t\t\t\tThere is !")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
+        if selector=='2' :    
             inselector=input("\t\t\t|   -->)ENTER CITY OR ZONE :")
             print("\t\t\t|______________________________________|")
-
-        if selector=='3' or flag0=='1':
+            newfile=open(amlak_samieian,'rb')
+            cls()
+            print("___________________________________________________________________________________________")
+            while True :
+                try:
+                    zone1=pooryasays.load(newfile)
+                    if inselector in zone1.address :
+                        zone1.showclass()
+                except AttributeError :
+                    pass
+                except EOFError :
+                    print("\n\n\t\t\t\tThere is not any more!")
+                    break
+                except NameError:
+                    print("\n\n\t\t\t\tThere is !")
+                    break 
+            input("\t\t\t\tpress any key to continue...")
+            newfile.close()
+        if selector=='3' :
                 try:    
                     least=int(input("\t\t\t|   -->) ENTER LEAST PRICE :"))
                     most=int(input("\t\t\t|   -->) ENTER MOST PROCE : "))
                     print("\t\t\t|______________________________________|")
-                    
+                    newfile=open(amlak_samieian,'rb')
+                    cls()
+                    print("___________________________________________________________________________________________")
+                    while True :
+                        try:
+                            price1=pooryasays.load(newfile)
+                            if price1.price >= least and price1.price <=most :
+                                price1.showclass()
+                        except EOFError or NameError:
+                            print("\n\n\t\t\t\tThere is not any more!")
+                            break 
+                    input("\t\t\t\tpress any key to continue...")
+                    newfile.close()
                 except ValueError:
                     cls()
                     input("\n\n\t\t\t\t    PLEASE ENTER CORRECTLY!")
-        if selector=='4':
-            temp=0
+        #if selector=='4':
+        #    temp=0
         elif selector=='5':
             break
-
 ################################################## SORT  ESTATE #####################################################
 
 ################################################### MAIN MENU #######################################################
