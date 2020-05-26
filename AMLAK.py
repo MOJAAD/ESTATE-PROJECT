@@ -80,7 +80,7 @@ class garden(farming):
         print("TYPE OF GARDEN : {}   WATER PERIOD : {}   WALL : {}   BOWER : {}".format(self.type_garden,self.water_period,self.wall,self.bower))
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
-        print("___________________________________________________________________________________________")
+        print("|___________________________________________________________________________________________|")
 
     # def __del__(area,address,price,description,type_presentation,water_period,type_garden,wall,bower):
     #     farming.__del__(area,adderss,price,description,type_presentation,water_period)
@@ -98,8 +98,7 @@ class field(farming):
         print("WATER PERIOD : {}   BOWER : {}".format(self.water_period,self.bower))
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
-        print("___________________________________________________________________________________________")
-
+        print("|___________________________________________________________________________________________|")
     
     # def __del__(self,area,address,price,description,type_presentation,water_period,bower):
     #     farming.__del__(self,area,adderss,price,description,type_presentation,water_period)
@@ -134,8 +133,7 @@ class residential(building):
             print("YARD : {}   PORCH : {}   FURNISHED : {}".format(self.des1,self.des2,self.des3))    
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
-        print("___________________________________________________________________________________________")
-
+        print("|___________________________________________________________________________________________|")
 
     # def __del__(self,area,address,price,description,type_presentation,construction_year,residential_type,number_of_rooms,parking,des1,des2,des3):
     #     building.__del__(self,area,address,price,description,type_presentation,construction_year)
@@ -166,8 +164,7 @@ class commercial(building):
             print("NUMBER OF ROOMS : {}   ADMINISTRATIVE DOCUMENT : {}".format(self.des1,self.des2))   
         print("TYPE OF PRESENTATION : {}".format(self.type_presentation))
         print("DESCRIPTION : {}".format(self.description))
-        print("___________________________________________________________________________________________")
-
+        print("|___________________________________________________________________________________________|")
     
     # def __del__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1,des2,des3,des4):
     #     building.__del__(self,area,address,price,description,type_presentation,construction_year)
@@ -724,7 +721,107 @@ def SEARCH():
         elif selector=='5':
             break
 ################################################## SORT  ESTATE #####################################################
-
+def SORT():
+    while True:
+        cls()
+        sorting=['']
+        flag='0'
+        print("\t\t\t ______________________________________")
+        print("\t\t\t|      PLEASE  SELECT BY NUMBER:       |")
+        print("\t\t\t|   1) SORT BY AREA (ascending)        |")
+        print("\t\t\t|   2) SORT BY AREA (descending)       |")
+        print("\t\t\t|   3) SORT BY PRICE (ascending)       |")
+        print("\t\t\t|   4) SORT BY PRICE (descending)      |")
+        print("\t\t\t|   5) BACK                            |")
+        selector=input("\t\t\t|______________________________________|")
+        newfile=open(amlak_samieian,'rb')
+        cls()
+        if selector=='1' :
+            while True:
+                try:
+                    if flag=='0' :
+                        sorting[0]=pooryasays.load(newfile)
+                        flag='1'
+                    else:
+                        sorting.append(pooryasays.load(newfile))
+                except EOFError:
+                    break
+            newfile.close()
+            for counter1 in range(len(sorting)):
+                for counter2 in range(len(sorting)-1):
+                    if sorting[counter2].area > sorting[counter2 +1 ].area:
+                        sorting.insert(counter2,sorting[counter2 +1])
+                        del sorting[counter2 +2]
+            print(" ___________________________________________________________________________________________")
+            print("|                       ESTATES HAVE BEEN SORTED BY AREA (ascending):                       |")
+            for row in sorting :
+                row.showclass()
+            input("\t\t\t\tpress any key to continue...")
+        elif selector=='2':
+            while True:
+                try:
+                    if flag=='0' :
+                        sorting[0]=pooryasays.load(newfile)
+                        flag='1'
+                    else:
+                        sorting.append(pooryasays.load(newfile))
+                except EOFError:
+                    break
+            newfile.close()
+            for counter1 in range(len(sorting)):
+                for counter2 in range(len(sorting)-1):
+                    if sorting[counter2].area < sorting[counter2 +1 ].area:
+                        sorting.insert(counter2,sorting[counter2 +1])
+                        del sorting[counter2 +2]
+            print(" ___________________________________________________________________________________________")
+            print("|                      ESTATES HAVE BEEN SORTED BY AREA (descending):                       |")
+            for row in sorting :
+                row.showclass()
+            input("\t\t\t\tpress any key to continue...")
+        elif selector=='3':
+            while True:
+                try:
+                    if flag=='0' :
+                        sorting[0]=pooryasays.load(newfile)
+                        flag='1'
+                    else:
+                        sorting.append(pooryasays.load(newfile))
+                except EOFError:
+                    break
+            newfile.close()
+            for counter1 in range(len(sorting)):
+                for counter2 in range(len(sorting)-1):
+                    if sorting[counter2].price > sorting[counter2 +1 ].price:
+                        sorting.insert(counter2,sorting[counter2 +1])
+                        del sorting[counter2 +2]
+            print(" ___________________________________________________________________________________________")
+            print("|                       ESTATES HAVE BEEN SORTED BY PRICE (ascending):                      |")
+            for row in sorting :
+                row.showclass()
+            input("\t\t\t\tpress any key to continue...")
+        elif selector=='4':
+            while True:
+                try:
+                    if flag=='0' :
+                        sorting[0]=pooryasays.load(newfile)
+                        flag='1'
+                    else:
+                        sorting.append(pooryasays.load(newfile))
+                except EOFError:
+                    break
+            newfile.close()
+            for counter1 in range(len(sorting)):
+                for counter2 in range(len(sorting)-1):
+                    if sorting[counter2].price < sorting[counter2 +1 ].price:
+                        sorting.insert(counter2,sorting[counter2 +1])
+                        del sorting[counter2 +2]
+            print(" ___________________________________________________________________________________________")
+            print("|                      ESTATES HAVE BEEN SORTED BY PRICE (descending):                      |")
+            for row in sorting :
+                row.showclass()
+            input("\t\t\t\tpress any key to continue...")
+        elif selector=='5':
+            break
 ################################################### MAIN MENU #######################################################
 welcome_animation()
 while True:
@@ -744,8 +841,7 @@ while True:
     if selector=='1' :
         ADD()
     elif selector=='2' :
-        #SHOW()
-        num=0
+        SORT()
     elif selector=='3' :
         #EDIT()
         num=0
