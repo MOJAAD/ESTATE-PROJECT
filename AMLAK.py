@@ -32,10 +32,20 @@ if findamlak==False :
     newfile=open(amlak_samieian,'x')
     newfile.close()
 if findadmin==False :
-    newfile=open(admin_samieian,'wb')
-    admin=['behrouz','samiean','0134','admin']
-    pooryasays.dump(admin,newfile)
-    newfile.close()
+    cls()
+    admin=['','','','']
+    print("\t\t\t ______________________________________")
+    print("\t\t\t|     WELCOME TO ESTATE PROGRAM!!      |")
+    print("\t\t\t|FIRST TIME , YOU MUST TO DEFINE ADMIN!|")
+    admin[0]=input("\t\t\t|-->ENTER YOUR FIRST NAME : ")
+    admin[1]=input("\t\t\t|-->ENTER YOUR LAST NAME : ")
+    admin[2]=input("\t\t\t|-->ENTER USERNAME : ")
+    admin[3]=input("\t\t\t|-->ENTER PASSWORD : ")
+    print("\t\t\t|______________________________________|")
+    wait()
+    oldfile=open(admin_samieian,'wb')
+    pooryasays.dump(admin,oldfile)
+    oldfile.close()
 ################################################# DEFINE CLASSES #################################################### 
 class estate:
     area=0
@@ -449,7 +459,130 @@ def ADD():
                 flag1='1'
                 break
 ################################################## EDIT ESTATE ######################################################
-
+def EDIT():
+    while True:
+        cls()
+        print("\t\t\t ______________________________________")
+        print("\t\t\t| FOR THIS PART ,JUST ADMIN HAS ACCESS |")
+        print("\t\t\t| PLEASE ENTER USERNAME AND PASSWORD : |")
+        print("\t\t\t| FOR BACK TO MENU FILL USERNAME BY 4: |")
+        username=input("\t\t\t| -->USERNAME : ")
+        password=input("\t\t\t| -->PASSWORD : ")
+        print("\t\t\t|______________________________________|")
+        oldfile=open(admin_samieian,'rb')
+        admin=pooryasays.load(oldfile)
+        if username==admin[2]:
+            if password==admin[3]:
+                oldfile.close()
+                while True:
+                    cls()
+                    print("\t\t\t ______________________________________")
+                    print("\t\t\t|  WELCOME   {}    {}   !   |".format(admin[0],admin[1]))
+                    hossein.sleep(1)  
+                    print("\t\t\t|      PLEASE  SELECT BY NUMBER:       |")
+                    print("\t\t\t|   1) EDIT OR REMOVE ESTATES          |")
+                    print("\t\t\t|   2) EDIT ADMIN PROFILE              |")
+                    print("\t\t\t|   3) DELETE ALL ESTATES!!            |")
+                    print("\t\t\t|   4) BACK TO MAIN MENU               |")
+                    selector=input("\t\t\t|______________________________________|")
+                    if selector=='1':
+                        while username !='4':
+                            cls()
+                            showing=['']
+                            flag='0'
+                            newfile=open(amlak_samieian,'rb')
+                            while True:
+                                    try:
+                                        if flag=='0' :
+                                            showing[0]=pooryasays.load(newfile)
+                                            flag='1'
+                                        else:
+                                            showing.append(pooryasays.load(newfile))
+                                    except EOFError:
+                                        break
+                            newfile.close()
+                            counter=0
+                            print(" ___________________________________________________________________________________________")
+                            print("|                                     ALL OF ESTATES :                                     |")
+                            for row in showing :
+                                    print(" {} ) ".format(counter+1),end='')
+                                    row.showclass()
+                                    counter += 1
+                            try:
+                                counter=int(input("\t\t\t| PLEASE  SELECT BY NUMBER OF ESTATE : |"))
+                                counter -=1
+                                print("\t\t\t ______________________________________")
+                                print("\t\t\t|    WHICH ONE ? (SELECT BY NUMBER)    |")
+                                print("\t\t\t|    1) EDIT                           |")
+                                print("\t\t\t|    2) REMOVE                         |")
+                                print("\t\t\t|Other) BACK                           |")
+                                inselector=input("\t\t\t|______________________________________|")
+                                if inselector=='1' :
+                                    num=0
+                                elif inselector=='2':
+                                    password=input("\t\t\t|       ARE YOU SURE?(YES or NO)       |")
+                                    if password.upper()=="YES" or password.upper()=='Y' :
+                                        newfile=open(amlak_samieian,'wb')
+                                        del showing[counter]
+                                        for andis in range(len(showing)):
+                                            pooryasays.dump(showing[andis],newfile)
+                                        newfile.close()
+                                        wait()
+                                        print("\t\t\t|    ALL ESTATE HAVE BEEN REMOVED!     |")
+                                        print("\t\t\t|______________________________________|")
+                                        hossein.sleep(1)
+                                        username='4'
+                                        break
+                                    elif password.upper()=="NO" or password.upper()=='N' :
+                                        username='4'
+                                        break
+                            except ValueError:
+                                print("\t\t\t|        PLEASE ENTER CORRECTLY!       |")
+                    elif selector=='2':
+                        cls()
+                        admin=['','','','']
+                        print("\t\t\t ______________________________________")
+                        print("\t\t\t|  ENTER NEW ITEMS FOR ADMIN PROFILE : |")
+                        admin[0]=input("\t\t\t|-->ENTER YOUR FIRST NAME : ")
+                        admin[1]=input("\t\t\t|-->ENTER YOUR LAST NAME : ")
+                        admin[2]=input("\t\t\t|-->ENTER USERNAME : ")
+                        admin[3]=input("\t\t\t|-->ENTER PASSWORD : ")
+                        print("\t\t\t|______________________________________|")
+                        wait()
+                        print("\t\t\t|         PROFILE ADMIN EDITED!        |")
+                        print("\t\t\t|______________________________________|")
+                        hossein.sleep(1)
+                        username='4'
+                        oldfile=open(admin_samieian,'wb')
+                        pooryasays.dump(admin,oldfile)
+                        oldfile.close()
+                    elif selector=='3':
+                        password=input("\t\t\t|       ARE YOU SURE?(YES or NO)       |")
+                        if password.upper()=="YES" or password.upper()=='Y' :
+                            open(amlak_samieian,'wb').close()
+                            wait()
+                            print("\t\t\t|    ALL ESTATE HAVE BEEN CLEANED!     |")
+                            print("\t\t\t|______________________________________|")
+                            hossein.sleep(1)
+                            username='4'
+                        elif password.upper()=="NO" or password.upper()=='N' :
+                            pass
+                    elif selector=='4':
+                        username='4'
+                        break
+            else :
+                cls()
+                print("\n\n\t\t\tPLEASE ENTER CORRECLY!")
+                oldfile.close()
+                hossein.sleep(1)
+        elif username != '4' :
+            cls()
+            print("\n\n\t\t\tPLEASE ENTER CORRECTLY!")
+            oldfile.close()
+            hossein.sleep(1)
+        if username=='4':
+            oldfile.close()
+            break         
 ################################################# SEARCH ESTATE #####################################################
 def SEARCH():
     #flag0='0'
@@ -755,7 +888,12 @@ def SORT():
             print(" ___________________________________________________________________________________________")
             print("|                       ESTATES HAVE BEEN SORTED BY AREA (ascending):                       |")
             for row in sorting :
-                row.showclass()
+                try:
+                    row.showclass()
+                except AttributeError:
+                    print("|                              THERE IS NO ESTATE FOR SHOWNG!                               |")
+                    print("|___________________________________________________________________________________________|")
+                    break            
             input("\t\t\t\tpress any key to continue...")
         elif selector=='2':
             while True:
@@ -776,7 +914,12 @@ def SORT():
             print(" ___________________________________________________________________________________________")
             print("|                      ESTATES HAVE BEEN SORTED BY AREA (descending):                       |")
             for row in sorting :
-                row.showclass()
+                try:
+                    row.showclass()
+                except AttributeError:
+                    print("|                              THERE IS NO ESTATE FOR SHOWNG!                               |")
+                    print("|___________________________________________________________________________________________|")
+                    break
             input("\t\t\t\tpress any key to continue...")
         elif selector=='3':
             while True:
@@ -797,7 +940,12 @@ def SORT():
             print(" ___________________________________________________________________________________________")
             print("|                       ESTATES HAVE BEEN SORTED BY PRICE (ascending):                      |")
             for row in sorting :
-                row.showclass()
+                try:
+                    row.showclass()
+                except AttributeError:
+                    print("|                              THERE IS NO ESTATE FOR SHOWNG!                               |")
+                    print("|___________________________________________________________________________________________|")
+                    break
             input("\t\t\t\tpress any key to continue...")
         elif selector=='4':
             while True:
@@ -818,7 +966,12 @@ def SORT():
             print(" ___________________________________________________________________________________________")
             print("|                      ESTATES HAVE BEEN SORTED BY PRICE (descending):                      |")
             for row in sorting :
-                row.showclass()
+                try:
+                    row.showclass()
+                except AttributeError:
+                    print("|                              THERE IS NO ESTATE FOR SHOWNG!                               |")
+                    print("|___________________________________________________________________________________________|")
+                    break
             input("\t\t\t\tpress any key to continue...")
         elif selector=='5':
             break
@@ -831,7 +984,7 @@ while True:
     print("\t\t\t|      PLEASE  SELECT BY NUMBER:       |")
     print("\t\t\t|   1) ADD NEW ESTATE                  |")
     print("\t\t\t|   2) SHOW ALL ESTATES (SORTED!)      |")
-    print("\t\t\t|   3) EDIT ESTATE                     |")
+    print("\t\t\t|   3) EDIT ESTATES AND PROFILE ADMIN  |")
     print("\t\t\t|   4) SEARCH ESTATE                   |")
     print("\t\t\t|   5) HELP!                           |")
     print("\t\t\t|   6) ABOUT US!                       |")
@@ -843,8 +996,7 @@ while True:
     elif selector=='2' :
         SORT()
     elif selector=='3' :
-        #EDIT()
-        num=0
+        EDIT()
     elif selector=='4' :
         SEARCH()
     elif selector=='5' :
