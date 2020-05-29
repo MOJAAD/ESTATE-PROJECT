@@ -148,6 +148,7 @@ class garden(farming):
             except ValueError:
                 cls()
                 print("\n\n\t\t\tPLEASE TRY AGAIN!")
+                hossein.sleep(1)
 
     # def __del__(area,address,price,description,type_presentation,water_period,type_garden,wall,bower):
     #     farming.__del__(area,adderss,price,description,type_presentation,water_period)
@@ -213,7 +214,7 @@ class field(farming):
             except ValueError:
                 cls()
                 print("\n\n\t\t\tPLEASE TRY AGAIN!")
-
+                hossein.sleep(1)
     
     # def __del__(self,area,address,price,description,type_presentation,water_period,bower):
     #     farming.__del__(self,area,adderss,price,description,type_presentation,water_period)
@@ -364,6 +365,7 @@ class residential(building):
             except ValueError:
                 cls()
                 print("\n\n\t\t\tPLEASE TRY AGAIN!")
+                hossein.sleep(1)
 
 
     # def __del__(self,area,address,price,description,type_presentation,construction_year,residential_type,number_of_rooms,parking,des1,des2,des3):
@@ -501,6 +503,7 @@ class commercial(building):
             except ValueError:
                 cls()
                 print("\n\n\t\t\tPLEASE TRY AGAIN!")
+                hossein.sleep(1)
 
     
     # def __del__(self,area,address,price,description,type_presentation,construction_year,commercial_type,des1,des2,des3,des4):
