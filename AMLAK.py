@@ -467,7 +467,7 @@ class commercial(building):
                     else :
                         self.type_presentation="FOR MORTGAGE AND RENT"
                 elif __selector=='8':
-                    if self.commercial_type=='INDUSTRIAL' of self.commercial_type=='SHOP':
+                    if self.commercial_type=='INDUSTRIAL' or self.commercial_type=='SHOP':
                         __newone=input("\t\t\t| ENTER NEW NUMBER OF ROOMS : ")
                         self.des1=int(__newone)
                     elif self.commercial_type=='OFFICE':
